@@ -1,0 +1,275 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:regular,italic,700,700italic);
+/*
+  ==========
+    Mixins
+  ==========
+*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+:root {
+  font-size: 10px;
+  font-family: "Noto Sans";
+}
+
+@media (min-width: 600px) {
+  :root {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+body {
+  background: #202C39;
+}
+
+.container {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #Fafafa;
+}
+
+img {
+  max-width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 320px;
+}
+
+.rank {
+  position: absolute;
+  font-weight: bold;
+  font-size: 1.5rem;
+  top: -.02em;
+  right: .85em;
+  background: rgba(3, 4, 4, 0.7);
+  -webkit-clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
+          clip-path: polygon(100% 0%, 100% 100%, 50% 85%, 0 100%, 0 0);
+  padding: .5em .5em .75em;
+}
+
+.front {
+  -webkit-transition: -webkit-transform 200ms ease;
+  transition: -webkit-transform 200ms ease;
+  transition: transform 200ms ease;
+  transition: transform 200ms ease, -webkit-transform 200ms ease;
+  background: transparent;
+}
+
+.front .img-main {
+  max-height: 360px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 0;
+     object-position: 0;
+  border-radius: 1em;
+}
+
+.front .sr-name {
+  margin: .75em 0;
+  padding: 0;
+  font-size: 1.75rem;
+  border-radius: calc(1em - .5em);
+}
+
+.front .details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.front .details .sr-subs {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.front .reddit-logo i {
+  font-size: 2.5rem;
+  color: #9E0031;
+}
+
+.back {
+  opacity: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 1.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.back .sr-details {
+  line-height: 1.4;
+  margin-bottom: .5em;
+}
+
+.back .sr-details span {
+  display: block;
+}
+
+.back .sr-details .sr-caption {
+  margin: 1em 0 1.5em;
+  font-size: 1rem;
+  text-align: justify;
+}
+
+.back .reddit-logo p {
+  margin: .2em 0;
+}
+
+.back .reddit-logo i {
+  font-size: 3.5rem;
+  color: #9E0031;
+}
+
+.background {
+  background: rgba(40, 56, 69, 0.9);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 1em;
+  z-index: -1;
+  -webkit-transform: scale(0, 0.5);
+          transform: scale(0, 0.5);
+  opacity: 0;
+}
+
+.card:hover .rank {
+  opacity: 0;
+  -webkit-transition: all 250ms cubic-bezier(0.21, 1, 0.81, 1);
+  transition: all 250ms cubic-bezier(0.21, 1, 0.81, 1);
+}
+
+.card:hover .front {
+  -webkit-transform: translateY(-30%) scale(0.7);
+          transform: translateY(-30%) scale(0.7);
+}
+
+.card:hover .front .sr-name {
+  -webkit-animation: srName 300ms forwards;
+          animation: srName 300ms forwards;
+  background: rgba(139, 232, 203, 0.5);
+  font-size: 2rem;
+  -webkit-box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
+}
+
+.card:hover .front .details {
+  opacity: 0;
+}
+
+.card:hover .back {
+  -webkit-transition: opacity 300ms cubic-bezier(0.21, 1, 0.81, 1) 100ms;
+  transition: opacity 300ms cubic-bezier(0.21, 1, 0.81, 1) 100ms;
+  opacity: 1;
+}
+
+.card:hover .background {
+  -webkit-transition: opacity 100ms linear 100ms, -webkit-transform 250ms cubic-bezier(0.21, 1, 0.81, 1) 100ms;
+  transition: opacity 100ms linear 100ms, -webkit-transform 250ms cubic-bezier(0.21, 1, 0.81, 1) 100ms;
+  transition: transform 250ms cubic-bezier(0.21, 1, 0.81, 1) 100ms, opacity 100ms linear 100ms;
+  transition: transform 250ms cubic-bezier(0.21, 1, 0.81, 1) 100ms, opacity 100ms linear 100ms, -webkit-transform 250ms cubic-bezier(0.21, 1, 0.81, 1) 100ms;
+  -webkit-transform: scale(1.25, 1.05);
+          transform: scale(1.25, 1.05);
+  opacity: 1;
+}
+
+.card:hover .background .rank {
+  opacity: 1;
+  -webkit-transform: translateY(-0.4) scale(0.1);
+          transform: translateY(-0.4) scale(0.1);
+}
+
+@-webkit-keyframes srName {
+  0% {
+    text-align: left;
+    opacity: 1;
+    background: none;
+  }
+  20% {
+    text-align: left;
+    opacity: 0;
+  }
+  40% {
+    text-align: center;
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    text-align: center;
+    opacity: 1;
+  }
+}
+
+@keyframes srName {
+  0% {
+    text-align: left;
+    opacity: 1;
+    background: none;
+  }
+  20% {
+    text-align: left;
+    opacity: 0;
+  }
+  40% {
+    text-align: center;
+    opacity: 0;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  100% {
+    text-align: center;
+    opacity: 1;
+  }
+}
+/*# sourceMappingURL=main.css.map */
